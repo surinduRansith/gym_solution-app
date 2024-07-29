@@ -20,8 +20,9 @@ return new class extends Migration
             $table->date('dob');
             $table->integer('mobile');
             $table->integer('height');
+            $table->integer('weight');
             $table->date('startDate');
-            $table->integer('ExpireDate');
+            $table->date('ExpireDate');
             $table->timestamps();
         });
     }

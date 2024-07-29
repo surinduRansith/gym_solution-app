@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\membersController;
+use App\Http\Controllers\WeightController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('form');
-});
+    return view('home',);
+})->name('home');
+
+Route::get('/form', function () {
+    return view('form',);
+})->name('membersregistration.data');
+
+Route::post('/form', [MembersController::class, 'createMember'])->name('insert.data');
+//Route::post('/form', [WeightController::class, 'createWeight'])->name('insert.data');
+
+Route::get('/members', [MembersController::class,'ShowMembers'])->name('members.data');
+
+Route::get('/members/{id}', [MembersController::class,'ShowMemberDetails'])->name('members.profile');
