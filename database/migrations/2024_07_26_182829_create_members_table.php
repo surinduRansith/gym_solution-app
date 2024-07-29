@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('gender');
             $table->date('dob');
-            $table->integer('mobile');
+            $table->string('mobile');
             $table->integer('height');
             $table->integer('weight');
             $table->date('startDate');
