@@ -98,18 +98,6 @@ class membersController extends Controller
         
         $member->save();
 
-        // Members::where('id',$member->id)->update([
-        //     'name' => $request->userName,
-        //     'gender'=> $request->gender,
-        //     'dob'=> $request->dob,
-        //     'mobile'=> $request->mobileNumber,
-        //     'height'=>  $request->height,
-        //     'weight'=>  $request->weight,
-        //     'startDate'=>$request->startdate,
-        //     'ExpireDate'=>$request->enddate
-            
-
-        // ]);
         return redirect(route('members.data'))->with('success','User Update Success');
     }
 }
