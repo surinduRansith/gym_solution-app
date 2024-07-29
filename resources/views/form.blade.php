@@ -5,7 +5,16 @@
 <div class="text-center pt-5">
     <h1>Members Registratoin</h1>
 </div>
+<br>
 
+ <!-- Breadcrumb -->
+ <nav aria-label="breadcrumb" class="main-breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Member Registration</li>
+</ol>
+</nav>
+<!-- /Breadcrumb -->
 
 
 
@@ -26,6 +35,7 @@
        <div class="input-group mb-3 " >
         <span class="input-group-text" id="basic-addon1">Date of Birth</span>
         <input type="date" class="form-control" id="dob" name="dob" value="{{old('dob')}}">
+        
       </div>
       @error('dob')
       <p style="color: red">{{ $message }}</p>

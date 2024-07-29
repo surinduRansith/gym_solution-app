@@ -6,12 +6,26 @@
 <p>{{ session('success') }}</p>
 @endif
 
-<div class="text-center pt-5">
-    <h1>Members List</h1>
+ <!-- Breadcrumb -->
+ <nav aria-label="breadcrumb" class="main-breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+ 
+  <li class="breadcrumb-item active" aria-current="page">Member List</li>
+</ol>
+</nav>
+<!-- /Breadcrumb -->
+
+<div class="text-start pt-5">
+  <a href="{{route('membersregistration.data')}}" class="btn btn-primary">
+    <i class="lni lni-user"></i>
+    <span>Add Member </span>
+</a>
 </div>
 
-<table class="table table-dark">
-    <thead>
+
+<table class="table table-primary table-striped " id="myTable">
+    <thead class="table-secondary">
       <td>Member ID</td>
       <td>Member Name</td>
       <td>Date of Birth</td>
@@ -27,7 +41,7 @@
     <tbody>
 @foreach ($members as $member )
 
-<tr class="{{ $member->id % 2 === 0 ? '' : 'table-active' }}">
+<tr >
     <td>{{$member->id}}</td>
     <td>{{$member->name}}</td>
     <td>{{$member->dob}}</td>
@@ -52,7 +66,20 @@
 
     
 @endforeach
+
 </tbody>
 </table>
-    
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+
+        "lengthMenu": [10, 100, 200],
+        
+
+    });
+});
+</script>
 @endsection

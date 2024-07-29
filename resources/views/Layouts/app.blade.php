@@ -8,7 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ 
+  
+<script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
     <link rel="stylesheet" href="{{url('CSS/sidebar.css')}}">
   </head>
   <body>
@@ -26,15 +28,21 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{route('membersregistration.data')}}" class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span>Profile</span>
+                        <span>Member Registration</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
+                  <a href="{{route('members.data')}}" class="sidebar-link">
+                    <i class="lni lni-users"></i>
+                      <span>Member List</span>
+                  </a>
+              </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Task</span>
+                      <i class="lni lni-invest-monitor"></i>
+                        <span>Payments</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -97,14 +105,11 @@
         </aside>
         <div class="main p-3">
           <div class="container">
-            <div class="text-center">
-                <h1>
-                    Sidebar Bootstrap 5
-                </h1>
+            
+
                 @yield('content')
 
-        
-              </div>
+              
             </div>
         </div>
     </div>
@@ -120,4 +125,5 @@
       
        
   </body>
+
 </html>
