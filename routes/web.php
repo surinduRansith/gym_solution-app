@@ -30,3 +30,7 @@ Route::post('/form', [MembersController::class, 'createMember'])->name('insert.d
 Route::get('/members', [MembersController::class,'ShowMembers'])->name('members.data');
 
 Route::get('/members/{id}', [MembersController::class,'ShowMemberDetails'])->name('members.profile');
+
+Route::get('/members/{id}/edit', [MembersController::class,'EditMember'])->name('members.edit');
+
+Route::put('/members/{id}/edit', [MembersController::class,'EditMemberDetails'])->name('update.data');

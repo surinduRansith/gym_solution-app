@@ -43,7 +43,7 @@
 
 <tr >
     <td>{{$member->id}}</td>
-    <td>{{$member->name}}</td>
+    <td><a href="{{route('members.profile',$member->id)}}"> {{$member->name}}</a></td>
     <td>{{$member->dob}}</td>
     <td>{{$member->gender}}</td>
     <td>{{$member->mobile}}</td>
@@ -52,7 +52,7 @@
     <td>{{$member->startDate}}</td>
     <td>{{$member->ExpireDate}}</td>
     <td>
-      <a href="{{route('members.profile',$member->id)}}" class="btn btn-primary">Edit</button></a>
+      <a href="{{route('members.edit',$member->id)}}" class="btn btn-primary">Edit</button></a>
 
     </td>
     <td>
