@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Members;
 use App\Models\Weight;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class membersController extends Controller
 {
 
   
-    
+  
 
     public function createMember(Request   $request ){
 
+        $nextId = DB::select("SHOW TABLE STATUS LIKE 'members'")[0]->Auto_increment;
+        
         $request->validate([
             'userName' => 'required|string|max:255',
             'gender' => 'required|string|in:male,female',
@@ -26,7 +28,7 @@ class membersController extends Controller
 
         ]);
 
-       
+        
 
         Members::create([
             'name' => $request->userName,
@@ -39,7 +41,15 @@ class membersController extends Controller
             'ExpireDate'=>$request->enddate
         ]);
 
-        return redirect(route('members.data'))->with('success', 'Date inserted successfully!');
+        Weight::create([
+            'member_id'=>$nextId,
+            'weight'=>  $request->weight,
+        ]);
+
+       
+
+        return redirect()->route('members.data')->with('success', 'Data inserted successfully!');
+        
     }
 
     public function ShowMembers(Request $request ){
@@ -71,7 +81,7 @@ class membersController extends Controller
     public function EditMemberDetails(Request $request, $id ){
 
         $member = Members::findOrFail($id);
-
+        $memberweight = Weight::findOrFail($id);
 
           $request->validate([
             'userName' => 'required|string|max:255',
@@ -93,9 +103,14 @@ class membersController extends Controller
         $member->weight = $request->input('weight');
         $member->startDate = $request->input('startdate');
         $member->ExpireDate = $request->input('enddate');
-    
-        
-        
+
+        Weight::create([
+            'member_id'=>$id,
+            'weight'=>  $request->weight,
+        ]);
+
+     
+        $memberweight->save();
         $member->save();
 
         return redirect(route('members.data'))->with('success','User Update Success');

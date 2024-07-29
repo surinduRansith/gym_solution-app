@@ -20,11 +20,15 @@ Route::get('/', function () {
     return view('home',);
 })->name('home');
 
+
+
+
 Route::get('/form', function () {
     return view('form',);
 })->name('membersregistration.data');
 
 Route::post('/form', [MembersController::class, 'createMember'])->name('insert.data');
+
 //Route::post('/form', [WeightController::class, 'createWeight'])->name('insert.data');
 
 Route::get('/members', [MembersController::class,'ShowMembers'])->name('members.data');

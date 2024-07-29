@@ -3,7 +3,14 @@
 @section('content')
 
 @if(session('success'))
-<p>{{ session('success') }}</p>
+<div class="alert alert-success" role="alert">
+  {{ session('success') }}
+</div>
+
+@endif
+
+@if(session('nextId'))
+    <p>The next member ID will be: {{ session('nextId') }}</p>
 @endif
 
  <!-- Breadcrumb -->
@@ -52,11 +59,11 @@
     <td>{{$member->startDate}}</td>
     <td>{{$member->ExpireDate}}</td>
     <td>
-      <a href="{{route('members.edit',$member->id)}}" class="btn btn-primary">Edit</button></a>
+      <a href="{{route('members.edit',$member->id)}}" class="btn btn-primary"><i class="lni lni-pencil-alt"></i></button></a>
 
     </td>
     <td>
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="submit" class="btn btn-danger"><i class="lni lni-trash-can"></i></button>
 
     </td>
 
