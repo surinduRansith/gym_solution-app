@@ -42,3 +42,5 @@ Route::put('/members/{id}/edit', [MembersController::class,'EditMemberDetails'])
 
 Route::get('/scheduletypes', [Schecule_typesController::class, 'index'])->name('scheduletype.insert');
 
+Route::post('/scheduletypes', [Schecule_typesController::class, 'addtype'])->name('scheduletype.add');
+Route::get('/scheduletypes', [Schecule_typesController::class, 'getScheculeType'])->name('scheduletype.insert');
