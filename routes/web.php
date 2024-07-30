@@ -29,11 +29,11 @@ Route::get('/form', function () {
 
 Route::post('/form', [MembersController::class, 'createMember'])->name('insert.data');
 
-//Route::post('/form', [WeightController::class, 'createWeight'])->name('insert.data');
-
 Route::get('/members', [MembersController::class,'ShowMembers'])->name('members.data');
 
 Route::get('/members/{id}', [MembersController::class,'ShowMemberDetails'])->name('members.profile');
+
+Route::put('/members/{id}', [MembersController::class,'weightUpdate'])->name('weight.update');
 
 Route::get('/members/{id}/edit', [MembersController::class,'EditMember'])->name('members.edit');
 

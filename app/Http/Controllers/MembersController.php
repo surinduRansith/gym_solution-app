@@ -115,4 +115,32 @@ class membersController extends Controller
 
         return redirect(route('members.data'))->with('success','User Update Success');
     }
+
+    public function weightUpdate(Request $request, $id ){
+
+        $member = Members::findOrFail($id);
+        $memberweight = Weight::findOrFail($id);
+
+          $request->validate([
+            
+            'weightUpdate' =>  'required|integer',
+
+        ]);
+
+     
+        $member->weight = $request->input('weightUpdate');
+
+        Weight::create([
+            'member_id'=>$id,
+            'weight'=>  $request->weightUpdate,
+        ]);
+
+     
+        $memberweight->save();
+        $member->save();
+
+        return redirect()->route('members.profile', ['id' => $id])->with('success', 'User Weight Update Success');
+
+
+    }
 }

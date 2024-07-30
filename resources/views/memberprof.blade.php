@@ -1,6 +1,12 @@
 @extends('Layouts.app')
 @section('content')
 
+@if(session('success'))
+<div class="alert alert-success" role="alert">
+  {{ session('success') }}
+</div>
+
+@endif
 
 @foreach ($members as $member )
 
@@ -87,7 +93,15 @@
                       <h6 class="mb-0">Weight</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        {{$member->weight}}
+<form action="{{route('weight.update',$member->id)}}" method="POST">
+  @csrf
+  @method('PUT')
+                      <div class="input-group mb-3 " >
+                        <input type="number" class="form-control" id="weightUpdate" name="weightUpdate" value="{{$member->weight}}">
+                        <button class="btn btn-info input-group-text " type="submit"  >Update</button>
+                      </div>
+                      
+                    </form>
                     </div>
                   </div>
                   <hr>

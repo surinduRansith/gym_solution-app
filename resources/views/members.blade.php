@@ -9,9 +9,6 @@
 
 @endif
 
-@if(session('nextId'))
-    <p>The next member ID will be: {{ session('nextId') }}</p>
-@endif
 
  <!-- Breadcrumb -->
  <nav aria-label="breadcrumb" class="main-breadcrumb">
