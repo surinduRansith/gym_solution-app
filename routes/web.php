@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\membersController;
 use App\Http\Controllers\WeightController;
+use App\Http\Controllers\Schecule_typesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,6 @@ Route::put('/members/{id}', [MembersController::class,'weightUpdate'])->name('we
 Route::get('/members/{id}/edit', [MembersController::class,'EditMember'])->name('members.edit');
 
 Route::put('/members/{id}/edit', [MembersController::class,'EditMemberDetails'])->name('update.data');
+
+Route::get('/scheduletypes', [Schecule_typesController::class, 'index'])->name('scheduletype.insert');
+

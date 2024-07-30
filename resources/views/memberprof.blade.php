@@ -10,7 +10,16 @@
 
 @foreach ($members as $member )
 
+@php
+        // Get the current date
+        $now = new DateTime();
 
+        // Retrieve the date of birth from the member object
+        $dob = new DateTime($member->dob);
+
+        // Calculate the difference in years (age)
+        $age = $now->diff($dob)->y;
+    @endphp
 
 <div class="container">
     <div class="main-body">
@@ -63,6 +72,15 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
+                      <h6 class="mb-0">Age</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{$age}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
                       <h6 class="mb-0">Gender</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
@@ -81,7 +99,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Height</h6>
+                      <h6 class="mb-0">Height(cm)</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         {{$member->height}}
@@ -90,7 +108,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Weight</h6>
+                      <h6 class="mb-0">Weight (kg)</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
 <form action="{{route('weight.update',$member->id)}}" method="POST">
@@ -98,7 +116,7 @@
   @method('PUT')
                       <div class="input-group mb-3 " >
                         <input type="number" class="form-control" id="weightUpdate" name="weightUpdate" value="{{$member->weight}}">
-                        <button class="btn btn-info input-group-text " type="submit"  >Update</button>
+                        <button class="btn  btn-primary " type="submit"  >Update</button>
                       </div>
                       
                     </form>
@@ -116,11 +134,94 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Weight</h6>
+                      <h6 class="mb-0">Expire Date</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         {{$member->ExpireDate}}
                     </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">BMI</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                
+                       <?php
+                       $heigtM = $member->height/100;
+
+
+                    
+                      ?>
+                    
+                        @if ($member->weight/($heigtM*$heigtM)<16)
+                          {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color:#bc2020">Severe Thinness</p>
+                        @elseif($member->weight/($heigtM*$heigtM)<17)
+                         {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color: #d38888">Moderate Thinness</p>
+                        @elseif($member->weight/($heigtM*$heigtM)<17)
+                        @elseif($member->weight/($heigtM*$heigtM)<18.5)
+                         {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color: #ffe400">Mild  Thinness</p>
+                        @elseif($member->weight/($heigtM*$heigtM)<25)
+                         {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color: #008137">Normal</p>
+                        @elseif($member->weight/($heigtM*$heigtM)<30)
+                        {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color: #ffe400" >Overweight</p>
+                        @elseif($member->weight/($heigtM*$heigtM)<35)
+                         {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color: #d38888">Obese Class I</p>
+                        @elseif($member->weight/($heigtM*$heigtM)<40)
+                         {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color: #bc2020"> Obese Class II</p>
+                        @else
+                         {{number_format($member->weight/($heigtM*$heigtM),1)}}<p style="color: #8a0101">Obese Class III</p>
+                          
+                        @endif
+
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Shedule</h6>
+                    </div>
+                    @php
+        // Define an array of gym exercises
+        $exercises = [
+            'Push-ups',
+            'Pull-ups',
+            'Squats',
+            'Deadlifts',
+            'Bench Press',
+            'Bicep Curls',
+            'Tricep Dips',
+            'Lunges',
+            'Planks',
+            'Shoulder Press',
+            'Leg Press',
+            'Lat Pulldowns',
+            'Dumbbell Rows',
+            'Cable Flyes',
+            'Seated Row',
+            'Hip Thrusts',
+            'Calf Raises',
+            'Russian Twists',
+            'Mountain Climbers',
+            'Burpees'
+        ];
+    @endphp
+
+                    <div class="col-sm-4 text-secondary">
+                        <select class="form-select" aria-label="Default" name="exerciselist" >
+                            <option selected>Please select Exercise</option>
+                            @foreach ($exercises as $exercise )
+                            <option value="{{$exercise}}" {{old('gender')=='male'?'selected':''}}>{{$exercise}}</option>
+                            @endforeach
+                          </select>
+                    
+                    </div>
+                    <div class="col-sm-2 text-secondary">
+                      <input type="number" class="form-control" id="numberofsets"  name="numberofsets">
+                  </div>
+                  <div class="col-sm-2 text-secondary">
+                    <input type="number" class="form-control" id="numberoftime"  name="numberoftime" value="3">
+                </div>
                   </div>
                   <hr>
 
@@ -137,12 +238,14 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2"></i>Weight Status</h6>
+                      <small>Weight Control</small>
                       <div class="progress mb-3" style="height: 5px">
+@extends('Charts.linechart')
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <small>Website Markup</small>
+                      
+                      {{-- <small>Website Markup</small>
                       <div class="progress mb-3" style="height: 5px">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
@@ -157,7 +260,7 @@
                       <small>Backend API</small>
                       <div class="progress mb-3" style="height: 5px">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
+                      </div> --}}
                     </div>
                   </div>
                 </div>

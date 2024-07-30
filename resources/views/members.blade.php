@@ -35,8 +35,8 @@
       <td>Date of Birth</td>
       <td>Gender</td>
       <td>Mobile Number</td>
-      <td>Weight</td>
-      <td>Height</td>
+      <td>Weight(kg)</td>
+      <td>Height(cm)</td>
       <td>Start Date</td>
       <td>Expire Date</td>
       <td></td>

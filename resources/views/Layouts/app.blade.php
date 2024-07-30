@@ -8,7 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
- 
+    
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+rel="stylesheet"
+/>
+
+
   
 <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
     <link rel="stylesheet" href="{{url('CSS/sidebar.css')}}">
@@ -28,15 +45,15 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="{{route('membersregistration.data')}}" class="sidebar-link">
+                    <a href="{{route('members.data')}}" class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span>Member Registration</span>
+                        <span>Members</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                  <a href="{{route('members.data')}}" class="sidebar-link">
+                  <a href="{{route('scheduletype.insert')}}" class="sidebar-link">
                     <i class="lni lni-users"></i>
-                      <span>Member List</span>
+                      <span>Schedule Types</span>
                   </a>
               </li>
                 <li class="sidebar-item">
@@ -105,7 +122,7 @@
         </aside>
         <div class="main p-3">
           <div class="container">
-            
+           
 
                 @yield('content')
 
