@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\ScheduleType;
+
 use Illuminate\Http\Request;
 
-class Schecule_typesController extends Controller
+class Schedule_typesController extends Controller
 {
     public function index(){
 

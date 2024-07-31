@@ -52,7 +52,7 @@ rel="stylesheet"
                 </li>
                 <li class="sidebar-item">
                   <a href="{{route('scheduletype.insert')}}" class="sidebar-link">
-                    <i class="lni lni-users"></i>
+                    <i class="lni lni-dumbbell"></i>
                       <span>Schedule Types</span>
                   </a>
               </li>

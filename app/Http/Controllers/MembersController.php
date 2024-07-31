@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Members;
+use App\Models\Schedules;
+use App\Models\ScheduleType;
 use App\Models\Weight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,6 +57,10 @@ class membersController extends Controller
     public function ShowMembers(Request $request ){
 
        $members =  Members::all();
+       $schedule = Schedules::all();
+       $scheduleTypes = ScheduleType::all();
+      
+      
 
         return view('/members', compact('members'));
 
@@ -63,16 +69,18 @@ class membersController extends Controller
     public function ShowMemberDetails(Request $request, $id ){
 
             $members=Members::all()->where('id',$id);
+            $scheduleTypes = ScheduleType::all();
 
-            return view('memberprof', compact('members'));
+            return view('memberprof', compact('members','scheduleTypes'));
 
     }
 
     public function EditMember(Request $request, $id ){
 
         $members=Members::all()->where('id',$id);
+      
 
-       
+               
 
         return view('memberedit', compact('members'));
 

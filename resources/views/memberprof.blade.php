@@ -42,13 +42,28 @@
                     <img src="{{$member->gender == 'male'?'https://bootdey.com/img/Content/avatar/avatar7.png':'https://bootdey.com/img/Content/avatar/avatar3.png'}}" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                         <h4> {{$member->name}}</h4>
+
+                        
                        
                     </div>
+                    <div class="mt-3">
+                     
+                      <div class="card">
+                        <div class="card-body">
+                          
+                        </div>
+                      </div>
+                      
+                     
+                  </div>
                   </div>
                 </div>
               </div>
+
+              
              
     </div>
+    
     <div class="col-md-8">
         <div class="card mb-3">
             <div class="card-body">
@@ -179,39 +194,15 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
+                      <form action="{{route('updateshedule.insert',$member->id)}}" method="post">
+                        @csrf
                       <h6 class="mb-0">Shedule</h6>
                     </div>
-                    @php
-        // Define an array of gym exercises
-        $exercises = [
-            'Push-ups',
-            'Pull-ups',
-            'Squats',
-            'Deadlifts',
-            'Bench Press',
-            'Bicep Curls',
-            'Tricep Dips',
-            'Lunges',
-            'Planks',
-            'Shoulder Press',
-            'Leg Press',
-            'Lat Pulldowns',
-            'Dumbbell Rows',
-            'Cable Flyes',
-            'Seated Row',
-            'Hip Thrusts',
-            'Calf Raises',
-            'Russian Twists',
-            'Mountain Climbers',
-            'Burpees'
-        ];
-    @endphp
-
-                    <div class="col-sm-4 text-secondary">
+                    <div class="col-sm-3 text-secondary">
                         <select class="form-select" aria-label="Default" name="exerciselist" >
-                            <option selected>Please select Exercise</option>
-                            @foreach ($exercises as $exercise )
-                            <option value="{{$exercise}}" {{old('gender')=='male'?'selected':''}}>{{$exercise}}</option>
+                            <option selected>Select Exercise</option>
+                            @foreach ($scheduleTypes as $exercise )
+                            <option value="{{$exercise->id}}" >{{$exercise->name}}</option>
                             @endforeach
                           </select>
                     
@@ -222,9 +213,12 @@
                   <div class="col-sm-2 text-secondary">
                     <input type="number" class="form-control" id="numberoftime"  name="numberoftime" value="3">
                 </div>
+                <div class="col-sm-1 text-secondary">
+                  <button type="submit" class="btn btn-warm">add</button>
+              </div>
                   </div>
                   <hr>
-
+                </form>
                   @endforeach
                   <div class="row">
                     <div class="col-sm-12">
