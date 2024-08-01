@@ -21,8 +21,7 @@
         $age = $now->diff($dob)->y;
     @endphp
 
-<div class="container">
-    <div class="main-body">
+
     
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
@@ -35,24 +34,44 @@
           <!-- /Breadcrumb -->
     
           <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
               <div class="card">
                   <div class="card-body">
                       <div class="d-flex flex-column align-items-center text-center">
                     <img src="{{$member->gender == 'male'?'https://bootdey.com/img/Content/avatar/avatar7.png':'https://bootdey.com/img/Content/avatar/avatar3.png'}}" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                        <h4> {{$member->name}}</h4>
-
-                        
-                       
+                      
+                        <h4> {{$member->name}}</h4>  
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-3 ">
+                          @if (count($schedules) > 0)
+                          <table class="table  table-striped table-responsive-sm ">
+                            <thead>
+                            <tbody>
+                          @foreach ($schedules as $schedule )
+                          <tr>
+                            <td >{{$schedule->id}}</td>
+                            <td >{{$schedule->exercise_name}}</td>
+                            <td>{{$schedule->noofsets}} </td>
+                            <td>X {{$schedule->nooftime}}</td>
+                           <td> <a href="{{route('memberscheduleedit.show',['id' => $member->id, 'scheduleid' => $schedule->id])}}" class="btn btn-sm btn-primary " ><i class="lni lni-pencil-alt"></i></button> </td>
+                           <form action="{{route('memberscheduledelete.delete',['id' => $member->id, 'scheduleid' => $schedule->id])}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <td> <button class="btn btn-sm btn-danger " type="submit"  ><i class="lni lni-eraser"></i></i></button> </td>
+                          </tr>
+                        </form>
+                          @endforeach
+                          <tr>
+                           <td colspan="6"><button class="btn btn-sm btn-info " type="submit"  ><i class="lni lni-download"></i></i></button> </td>
+                          </tr>
+                          </tbody>
+                          </table>
+                          @endif
                      
-                      <div class="card">
-                        <div class="card-body">
-                          
-                        </div>
-                      </div>
+                      
+                     
+                      
                       
                      
                   </div>
@@ -60,19 +79,30 @@
                 </div>
               </div>
 
-              
+              @extends('Charts.linechart')
              
     </div>
     
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Member ID</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        
+                        {{$member->id}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
                     <div class="col-sm-3">
                         <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         {{$member->name}}
+                       
                     </div>
                   </div>
                   <hr>
@@ -228,7 +258,7 @@
                 </div>
               </div>
 
-              <div class="row gutters-sm">
+              {{-- <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
@@ -238,7 +268,7 @@
 @extends('Charts.linechart')
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      
+                       --}}
                       {{-- <small>Website Markup</small>
                       <div class="progress mb-3" style="height: 5px">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
@@ -255,7 +285,7 @@
                       <div class="progress mb-3" style="height: 5px">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
                       </div> --}}
-                    </div>
+                    {{-- </div>
                   </div>
                 </div>
                 <div class="col-sm-6 mb-3">
@@ -285,15 +315,14 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
 
 
 
             </div>
           </div>
 
-        </div>
-    </div>
+  
 
 
     

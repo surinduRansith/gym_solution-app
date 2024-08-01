@@ -6,6 +6,7 @@ use App\Models\ScheduleType;
 use App\Models\Schedules;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SchedulesController extends Controller
 {
@@ -52,7 +53,7 @@ class SchedulesController extends Controller
 
         Schedules::create([
             'member_id' => $members->id,
-            'sheduleType_id' => $exercise->id,
+            'scheduleType_id' => $exercise->id,
             'noofsets' => $request->numberofsets,
             'nooftime' => $request->numberoftime,
         ]);
@@ -60,6 +61,38 @@ class SchedulesController extends Controller
         return redirect()->route('members.profile', ['id' => $id])->with('success', 'Schedule created successfully.');
     }
 
+    public function memberscheduleUpdate(Request $request, $id,$scheduleid){
 
+
+
+        $this->validate($request, [
+            'noofsets' => 'required|integer',
+            'nooftime' => 'required|integer'
+        ]);
+    
+          DB::table('schedules')
+        ->where('member_id', $id)
+        ->where('id', $scheduleid)
+        ->update([
+            'noofsets' => $request->input('noofsets'),
+            'nooftime' => $request->input('nooftime')
+        ]);
+    
+
+       
+        return redirect()->route('members.profile', ['id' => $id])->with('success', 'User Schedule Update Success');
+    }
+
+    public function memberscheduleDelete(Request $request, $id, $scheduleid){
+
+ DB::table('schedules')
+        ->where('member_id', $id)
+        ->where('id', $scheduleid)
+        ->delete();
+    
+
+    return redirect()->route('members.profile', ['id' => $id])->with('success', 'User Schedule Delete Success');
+    }
+   
 
 }

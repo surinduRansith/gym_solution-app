@@ -49,3 +49,7 @@ Route::get('/scheduletypes', [Schedule_typesController::class, 'index'])->name('
 
 Route::post('/scheduletypes', [Schedule_typesController::class, 'addtype'])->name('scheduletype.add');
 Route::get('/scheduletypes', [Schedule_typesController::class, 'getScheculeType'])->name('scheduletype.insert');
+Route::get('/members/{id}/editschedule/{scheduleid}', [MembersController::class, 'memberscheduleEditpage'])->name('memberscheduleedit.show');
+Route::put('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleUpdate'])->name('memberScheduleedit.update');
+Route::delete('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduleeditpagedelete.delete');
+Route::delete('/members/{id}/schedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduledelete.delete');

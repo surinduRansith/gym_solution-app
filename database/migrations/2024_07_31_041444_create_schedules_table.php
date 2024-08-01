@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('member_id');
-            $table->unsignedBigInteger('sheduleType_id');
+            $table->unsignedBigInteger('scheduleType_id');
             $table->integer('noofsets');
             $table->integer('nooftime');
             $table->timestamps();

@@ -57,9 +57,7 @@ class membersController extends Controller
     public function ShowMembers(Request $request ){
 
        $members =  Members::all();
-       $schedule = Schedules::all();
-       $scheduleTypes = ScheduleType::all();
-      
+
       
 
         return view('/members', compact('members'));
@@ -70,8 +68,14 @@ class membersController extends Controller
 
             $members=Members::all()->where('id',$id);
             $scheduleTypes = ScheduleType::all();
+            $schedules = Schedules::join('members', 'schedules.member_id', '=', 'members.id')
+            ->join('schedule_types', 'schedules.scheduleType_id', '=', 'schedule_types.id')
+            ->select('schedules.*', 'schedule_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.member_id', $id)
+            ->get();
+           
+           
 
-            return view('memberprof', compact('members','scheduleTypes'));
+            return view('memberprof', compact('members','scheduleTypes','schedules'));
 
     }
 
@@ -151,4 +155,17 @@ class membersController extends Controller
 
 
     }
+
+    public function memberscheduleEditpage(Request $request, $id,$sheduleid){
+
+        $schedules = Schedules::join('members', 'schedules.member_id', '=', 'members.id')
+        ->join('schedule_types', 'schedules.scheduleType_id', '=', 'schedule_types.id')
+        ->select('schedules.*', 'schedules.id','schedules.member_id','schedule_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.id', $sheduleid)
+        ->get();
+       
+
+        return view('memberscheduleedit',compact('schedules'));
+    }
+
+    
 }

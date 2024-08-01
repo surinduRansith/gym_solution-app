@@ -21,7 +21,7 @@
 
 <form action="{{route('insert.data')}}" method="post">
   @csrf
-  <div class="container text-center">
+  <div class="text-center">
     <div class="row">
       <div class="col-6">
       <div class="input-group mb-3 " >

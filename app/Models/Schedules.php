@@ -11,7 +11,7 @@ class Schedules extends Model
     protected $fillable = [
         
         'member_id',
-        'sheduleType_id',
+        'scheduleType_id',
          'noofsets',
          'nooftime'
  ];

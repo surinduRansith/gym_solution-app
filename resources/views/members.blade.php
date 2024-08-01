@@ -21,14 +21,15 @@
 <!-- /Breadcrumb -->
 
 <div class="text-start pt-5">
-  <a href="{{route('membersregistration.data')}}" class="btn btn-primary">
+  <a href="{{route('membersregistration.data')}}" class="btn btn-primary ">
     <i class="lni lni-user"></i>
     <span>Add Member </span>
 </a>
 </div>
+<br>
 
-
-<table class="table table-primary table-striped " id="myTable">
+<div class="table-responsive">
+<table class="table " id="myTable" >
     <thead class="table-secondary">
       <td>Member ID</td>
       <td>Member Name</td>
@@ -73,6 +74,7 @@
 
 </tbody>
 </table>
+</div>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
