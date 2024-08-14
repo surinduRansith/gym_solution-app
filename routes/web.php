@@ -54,4 +54,5 @@ Route::get('/members/{id}/editschedule/{scheduleid}', [MembersController::class,
 Route::put('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleUpdate'])->name('memberScheduleedit.update');
 Route::delete('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduleeditpagedelete.delete');
 Route::delete('/members/{id}/schedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduledelete.delete');
+Route::get('/members/{id}/schedule', [SchedulesController::class, 'memberAllscheduleDelete'])->name('memberallscheduledelete.delete');
 Route::get('/members/{id}/generatepdf', [memberScheduleListController::class,'memberScheduleList'])->name('memberschedulelist.data');

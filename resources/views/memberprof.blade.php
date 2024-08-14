@@ -65,7 +65,10 @@
                           @endforeach
                           
                           <tr>
-                           <td colspan="6"><a href="{{route('memberschedulelist.data',['id' => $member->id])}}" class="btn btn-sm btn-primary " ><i class="lni lni-download"></i></button> </td>
+                           <td colspan="6">
+                            <a href="{{route('memberschedulelist.data',['id' => $member->id])}}" class="btn btn-sm btn-primary " ><i class="lni lni-download"></i></a>
+                            <a href="{{route('memberallscheduledelete.delete',['id' => $member->id])}}" class="btn btn-sm btn-danger "><i class="lni lni-eraser"></i></i></a>
+                             </td>
                           </tr>
                           </tbody>
                           </table>
@@ -94,7 +97,7 @@
                     </div>
                     <div class="col-sm-9 text-secondary">
                         
-                      They not have IT personThey not have IT personThey not have IT person
+                      {{$member->id}}
                     </div>
                   </div>
                   <hr>

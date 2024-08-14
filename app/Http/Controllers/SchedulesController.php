@@ -93,6 +93,16 @@ class SchedulesController extends Controller
 
     return redirect()->route('members.profile', ['id' => $id])->with('success', 'User Schedule Delete Success');
     }
+
+    public function memberAllscheduleDelete(Request $request, $id){
+        DB::table('schedules')
+        ->where('member_id', $id)
+        ->delete();
+    
+
+    return redirect()->route('members.profile', ['id' => $id])->with('success', 'User Schedule Delete Success');
+
+    }
    
 
 }
