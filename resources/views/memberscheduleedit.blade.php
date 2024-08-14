@@ -19,21 +19,16 @@
   <td >{{$schedule->exercise_name}}</td>
   <td><input type="number" class="form-control" value="{{$schedule->noofsets}}" name="noofsets"> </td>
   <td><input type="number" class="form-control" value="{{$schedule->nooftime}}" name="nooftime"> </td>
-  <form action="{{route('memberscheduleeditpagedelete.delete',['id' => $schedule->member_id, 'scheduleid' => $schedule->id])}}" method="POST">
-    @csrf
-    @method('DELETE')
-    <td> <button class="btn btn-sm btn-danger " type="submit"  ><i class="lni lni-eraser"></i></i></button> </td>
   </tr>
-</form>
   
 </tr>
 @endforeach
 <tr>
- <td colspan="4" class="align-middle"> <div class="text-center"><button class="btn btn-sm btn-primary " >update</button></div> </td>
+ <td colspan="3" class="align-middle"> <div class="text-center"><button class="btn btn-sm btn-primary " >update</button></div> </td>
+</form>
 </tr>
 </tbody>
 </table>
 
-</form>
 @endif
 @endsection

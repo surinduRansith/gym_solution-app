@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\memberScheduleListController;
 use App\Http\Controllers\membersController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\Schedule_typesController;
@@ -53,3 +54,4 @@ Route::get('/members/{id}/editschedule/{scheduleid}', [MembersController::class,
 Route::put('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleUpdate'])->name('memberScheduleedit.update');
 Route::delete('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduleeditpagedelete.delete');
 Route::delete('/members/{id}/schedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduledelete.delete');
+Route::get('/members/{id}/generatepdf', [memberScheduleListController::class,'memberScheduleList'])->name('memberschedulelist.data');

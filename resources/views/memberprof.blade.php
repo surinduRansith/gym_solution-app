@@ -8,6 +8,7 @@
 
 @endif
 
+
 @foreach ($members as $member )
 
 @php
@@ -62,8 +63,9 @@
                           </tr>
                         </form>
                           @endforeach
+                          
                           <tr>
-                           <td colspan="6"><button class="btn btn-sm btn-info " type="submit"  ><i class="lni lni-download"></i></i></button> </td>
+                           <td colspan="6"><a href="{{route('memberschedulelist.data',['id' => $member->id])}}" class="btn btn-sm btn-primary " ><i class="lni lni-download"></i></button> </td>
                           </tr>
                           </tbody>
                           </table>
@@ -92,7 +94,7 @@
                     </div>
                     <div class="col-sm-9 text-secondary">
                         
-                        {{$member->id}}
+                      They not have IT personThey not have IT personThey not have IT person
                     </div>
                   </div>
                   <hr>
@@ -239,9 +241,13 @@
                     </div>
                     <div class="col-sm-2 text-secondary">
                       <input type="number" class="form-control" id="numberofsets"  name="numberofsets">
+                      @error('numberofsets')
+                      <p style="color: red">{{ $message }}</p>
+                      @enderror
                   </div>
                   <div class="col-sm-2 text-secondary">
-                    <input type="number" class="form-control" id="numberoftime"  name="numberoftime" value="3">
+                    <input type="number" class="form-control " id="numberoftime"  name="numberoftime" value="3">
+                    
                 </div>
                 <div class="col-sm-1 text-secondary">
                   <button type="submit" class="btn btn-warm">add</button>
