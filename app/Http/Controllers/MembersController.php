@@ -80,7 +80,7 @@ class MembersController extends Controller
             ->select('schedules.*', 'exercise_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.member_id', $id)
             ->get();
 
-            $memberWeights = Weight::all()->where($id);
+            $memberWeights = Weight::all()->where('member_id',$id);
            
            
 

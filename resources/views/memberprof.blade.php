@@ -20,6 +20,8 @@
 
         // Calculate the difference in years (age)
         $age = $now->diff($dob)->y;
+
+        
     @endphp
 
 
@@ -181,49 +183,59 @@
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Weight Progress Chart</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <div class="container">
+@foreach ($memberWeights as $memberWeight  )
 
+@php
+        $weightlist[] = $memberWeight->weight; 
+    @endphp
+  
+@endforeach
                               <div>
                                 <canvas id="myChart"></canvas>
-                              </div>
-                              
-                              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                              
-                              <script>
-                                const ctx = document.getElementById('myChart');
-                              
-                                new Chart(ctx, {
-                                  type: 'line',
-                                  data: {
-                                    labels: [
-                                  "Jan", "Febr", "Mar", "Apr", "May", "Jun",
-                                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-                              ],
-                                    datasets: [{
-                                      label: '# of Votes',
-                                      data: [120, 110, 3, 5, 2, 3],
-                                      borderWidth: 1
-                                    }]
-                                  },
-                                  options: {
-                                    scales: {
-                                      y: {
-                                        beginAtZero: true
-                                      }
-                                    }
-                                  }
+                            </div>
+                            
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const ctx = document.getElementById('myChart').getContext('2d');
+                            
+                                    new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: [
+                                                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                                            ],
+                                            datasets: [{
+                                                label: 'Member Weights',
+                                                data: @json($weightlist), // Make sure this is a valid array
+                                                borderWidth: 1,
+                                                borderColor: 'rgba(75, 192, 192, 1)',
+                                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
                                 });
-                              </script>
+                            </script>
                             </div>
                             
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
+                            {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
                           </div>
                         </div>
                       </div>
