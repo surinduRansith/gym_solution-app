@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Members;
 use App\Models\Schedules;
-use App\Models\ScheduleType;
+use App\Models\Exercise_types;
 use App\Models\Weight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class membersController extends Controller
+class MembersController extends Controller
 {
 
   
@@ -23,6 +23,7 @@ class membersController extends Controller
             'gender' => 'required|string|in:male,female',
             'dob' => 'required|date',
             'mobileNumber' => 'required|min:10|max:10',
+            'membershiptype' =>'required|string|in:monthly,annual', 
             'height' =>  'required|integer',
             'weight' =>  'required|integer',
             'startdate' =>'required|date',
@@ -37,6 +38,7 @@ class membersController extends Controller
             'gender'=> $request->gender,
             'dob'=> $request->dob,
             'mobile'=> $request->mobileNumber,
+            'membershiptype'=>$request->membershiptype,
             'height'=>  $request->height,
             'weight'=>  $request->weight,
             'startDate'=>$request->startdate,
@@ -54,9 +56,13 @@ class membersController extends Controller
         
     }
 
+
+
     public function ShowMembers(Request $request ){
 
        $members =  Members::all();
+
+    
 
       
 
@@ -66,16 +72,19 @@ class membersController extends Controller
 
     public function ShowMemberDetails(Request $request, $id ){
 
+       
             $members=Members::all()->where('id',$id);
-            $scheduleTypes = ScheduleType::all();
+            $scheduleTypes = Exercise_types::all();
             $schedules = Schedules::join('members', 'schedules.member_id', '=', 'members.id')
-            ->join('schedule_types', 'schedules.scheduleType_id', '=', 'schedule_types.id')
-            ->select('schedules.*', 'schedule_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.member_id', $id)
+            ->join('exercise_types', 'schedules.scheduleType_id', '=', 'exercise_types.id')
+            ->select('schedules.*', 'exercise_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.member_id', $id)
             ->get();
+
+            $memberWeights = Weight::all()->where($id);
            
            
 
-            return view('memberprof', compact('members','scheduleTypes','schedules'));
+            return view('memberprof', compact('members','scheduleTypes','schedules','memberWeights'));
 
     }
 

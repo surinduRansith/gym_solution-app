@@ -129,7 +129,7 @@ rel="stylesheet"
             </div>
         </aside>
         <div class="main p-3">
-          <div class="container">
+          <div class="container-fluid">
            
 
                 @yield('content')

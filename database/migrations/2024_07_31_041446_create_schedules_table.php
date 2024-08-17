@@ -23,7 +23,7 @@ return new class extends Migration
 
             
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
-            $table->foreign('sheduleType_id')->references('id')->on('schedule_types')->onDelete('cascade');
+            $table->foreign('scheduleType_id')->references('id')->on('exercise_types')->onDelete('cascade');
 
         });
     }

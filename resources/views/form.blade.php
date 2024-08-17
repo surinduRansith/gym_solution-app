@@ -73,25 +73,46 @@
 
     <div class="row">
       <div class="col-6">
-     <div class="input-group mb-3 " >
-      <span class="input-group-text" id="basic-addon1"> Height</span>
-      <input type="number" class="form-control" id="height" name="height" value="{{old('height')}}">
-    </div>
-    @error('height')
-    <p style="color: red">{{ $message }}</p>
-@enderror
+        <div class="input-group mb-3 " >
+          <span class="input-group-text" id="basic-addon1">Membership Type</span>
+          <select class="form-select" aria-label="Default" name="membershiptype" >
+              <option selected>Please select Gender</option>
+              <option value="monthly" {{old('membershiptype')=='monthly'?'selected':''}}>Monthly</option>
+              <option value="annual" {{old('membershiptype')=='annual'?'selected':''}}>Annual</option>
+            </select>
+      </div>
+      @error('membershiptype')
+      <p style="color: red">{{ $message }}</p>
+  @enderror
   </div>
-  <div class="col-6">
 
-    <div class="input-group mb-3 " >
-      <span class="input-group-text" id="basic-addon1"> Weight</span>
-      <input type="number" class="form-control" id="weight" name="weight" value="{{old('weight')}}">
+
+  <div class="col-6">
+    <div class="input-group mb-3">
+      <input type="number" class="form-control" placeholder="Height" aria-label="height"id="height" name="height" value="{{old('height')}}" >
+      <span class="input-group-text">@</span>
+      <input type="text" class="form-control" placeholder="Weight" aria-label="weight" id="weight" name="weight" value="{{old('weight')}}">
     </div>
-    @error('weight')
-    <p style="color: red">{{ $message }}</p>
-@enderror
+  
   </div>
+
 </div>
+<div class="row">
+  <div class="col-6">
+</div>
+
+
+<div class="col-6">
+  @error('height')
+<p style="color: red">{{ $message }}</p>
+@enderror
+
+@error('weight')
+<p style="color: red">{{ $message }}</p>
+@enderror
+</div>
+</div>
+
 
 <div class="row">
   <div class="col-6">

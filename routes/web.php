@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\memberScheduleListController;
 use App\Http\Controllers\membersController;
 use App\Http\Controllers\WeightController;
@@ -38,7 +39,7 @@ Route::get('/members/{id}', [MembersController::class,'ShowMemberDetails'])->nam
 
 Route::put('/members/{id}', [MembersController::class,'weightUpdate'])->name('weight.update');
 
-Route::post('/members/{id}', [Schedule_typesController::class, 'addtype'])->name('scheduletype.add');
+Route::post('/members/{id}', [ExerciseController::class, 'addtype'])->name('scheduletype.add');
 
 Route::post('/members/{id}', [SchedulesController::class, 'storeSchedule'])->name('updateshedule.insert');
 
@@ -46,10 +47,10 @@ Route::get('/members/{id}/edit', [MembersController::class,'EditMember'])->name(
 
 Route::put('/members/{id}/edit', [MembersController::class,'EditMemberDetails'])->name('update.data');
 
-Route::get('/scheduletypes', [Schedule_typesController::class, 'index'])->name('scheduletype.insert');
+Route::get('/scheduletypes', [ExerciseController::class, 'index'])->name('scheduletype.insert');
 
-Route::post('/scheduletypes', [Schedule_typesController::class, 'addtype'])->name('scheduletype.add');
-Route::get('/scheduletypes', [Schedule_typesController::class, 'getScheculeType'])->name('scheduletype.insert');
+Route::post('/scheduletypes', [ExerciseController::class, 'addtype'])->name('scheduletype.add');
+Route::get('/scheduletypes', [ExerciseController::class, 'getScheculeType'])->name('scheduletype.insert');
 Route::get('/members/{id}/editschedule/{scheduleid}', [MembersController::class, 'memberscheduleEditpage'])->name('memberscheduleedit.show');
 Route::put('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleUpdate'])->name('memberScheduleedit.update');
 Route::delete('/members/{id}/editschedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduleeditpagedelete.delete');

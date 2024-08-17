@@ -31,8 +31,7 @@ class WeightController extends Controller
 
         return redirect(route('home'))->back()->with('success', 'Date inserted successfully!');
 
-
-       
-
     }
+
+ 
 }

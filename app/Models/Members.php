@@ -14,6 +14,7 @@ class Members extends Model
        'gender',
        'dob',
         'mobile',
+        'membershiptype',
         'height',
         'weight',
        'startDate',

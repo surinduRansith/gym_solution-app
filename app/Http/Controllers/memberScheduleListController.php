@@ -13,8 +13,8 @@ class memberScheduleListController extends Controller
         $membersName=Members::all()->where('id',$id);
 
         $member = Schedules::join('members', 'schedules.member_id', '=', 'members.id')
-            ->join('schedule_types', 'schedules.scheduleType_id', '=', 'schedule_types.id')
-            ->select('schedules.*','members.name as name', 'schedule_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.member_id', $id)
+            ->join('exercise_types', 'schedules.scheduleType_id', '=', 'exercise_types.id')
+            ->select('schedules.*','members.name as name', 'exercise_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.member_id', $id)
             ->get();
         $data=[
             'title'=>'Surindu',

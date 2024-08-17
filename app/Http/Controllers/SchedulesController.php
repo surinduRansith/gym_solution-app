@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\exercise_types;
 use App\Models\Members;
 use App\Models\ScheduleType;
 use App\Models\Schedules;
@@ -46,7 +48,7 @@ class SchedulesController extends Controller
             'numberoftime' => 'required'
         ]);
 
-        $exercise = ScheduleType::all()->where('id', $request->exerciselist)->first();
+        $exercise = exercise_types::all()->where('id', $request->exerciselist)->first();
         if (!$exercise) {
             return redirect()->back()->with('error', 'Exercise not found.');
         }
