@@ -164,12 +164,31 @@
                       <h6 class="mb-0">Weight (kg)</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
+
+      @if ($formattedUpdateDate)
+    <p>Last Update Date: {{ $formattedUpdateDate }}</p>
+ 
+
+    @if ($dateDifference<30)
+      @php
+        $activetype = 'disabled'
+       
+      @endphp
+       <p>Weight can only be updated after 30 days from the last update.</p>
+      @else
+      @php
+      $activetype = ''
+    @endphp
+    @endif
+@else
+    <p>No weight records found for this member.</p>
+@endif
 <form action="{{route('weight.update',$member->id)}}" method="POST">
   @csrf
   @method('PUT')
                       <div class="input-group mb-3 " >
                         <input type="number" class="form-control" id="weightUpdate" name="weightUpdate" value="{{$member->weight}}">
-                        <button class="btn  btn-primary " type="submit"  >Update</button>
+                        <button class="btn  btn-primary " type="submit" {{$activetype}} >Update</button>
                       </div>
                       
                     </form>
@@ -191,10 +210,24 @@
 @foreach ($memberWeights as $memberWeight  )
 
 @php
-        $weightlist[] = $memberWeight->weight; 
+        $weightlist[] = $memberWeight->weight;
+
     @endphp
   
 @endforeach
+
+@if ($formattedUpdateDate)
+    <p>Last Update Date: {{ $formattedUpdateDate }}</p>
+    <p>Difference in Days: {{ $dateDifference }}</p>
+
+    @if ($dateDifference<30)
+      
+    @endif
+@else
+    <p>No weight records found for this member.</p>
+@endif
+
+
                               <div>
                                 <canvas id="myChart"></canvas>
                             </div>

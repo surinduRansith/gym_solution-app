@@ -18,7 +18,7 @@ $exerciseTypes = ['Chest Exercises',
 
 @extends('Layouts.app')
 
-@extends('Charts.linechart')
+
 
 @section('content')
 

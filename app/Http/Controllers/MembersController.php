@@ -6,8 +6,11 @@ use App\Models\Members;
 use App\Models\Schedules;
 use App\Models\Exercise_types;
 use App\Models\Weight;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\Diff\Diff;
+
 class MembersController extends Controller
 {
 
@@ -81,10 +84,23 @@ class MembersController extends Controller
             ->get();
 
             $memberWeights = Weight::all()->where('member_id',$id);
-           
-           
 
-            return view('memberprof', compact('members','scheduleTypes','schedules','memberWeights'));
+            $memberweightlatestUpdate = Weight::where('member_id', $id)->latest('updated_at')->first();
+           
+            $formattedUpdateDate = $memberweightlatestUpdate 
+            ? Carbon::parse($memberweightlatestUpdate->updated_at)->toDateString() 
+            : null;
+
+            $now = now();
+            $today = now()->toDateString();
+            $formattedDateTime = now()->format('Y-m-d');
+
+            $dateDifference = $formattedUpdateDate
+            ? $now->diffInDays(Carbon::parse($formattedUpdateDate))
+            : null;
+            
+
+            return view('memberprof', compact('members','scheduleTypes','schedules','memberWeights','formattedUpdateDate','dateDifference'));
 
     }
 
