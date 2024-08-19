@@ -26,7 +26,7 @@ class MembersController extends Controller
             'gender' => 'required|string|in:male,female',
             'dob' => 'required|date',
             'mobileNumber' => 'required|min:10|max:10',
-            'membershiptype' =>'required|string|in:monthly,annual', 
+            'membershiptype' =>'required|string|in:Monthly,Annual', 
             'height' =>  'required|integer',
             'weight' =>  'required|integer',
             'startdate' =>'required|date',
@@ -125,6 +125,7 @@ class MembersController extends Controller
             'gender' => 'required|string|in:male,female',
             'dob' => 'required|date',
             'mobileNumber' => 'required|min:10|max:10',
+            'membershiptype' =>'required|string|in:Monthly,Annual', 
             'height' =>  'required|integer',
             'weight' =>  'required|integer',
             'startdate' =>'required|date',
@@ -136,6 +137,7 @@ class MembersController extends Controller
         $member->gender = $request->input('gender');
         $member->dob = $request->input('dob');
         $member->mobile = $request->input('mobileNumber');
+        $member->membershiptype = $request->input('membershiptype');
         $member->height = $request->input('height');
         $member->weight = $request->input('weight');
         $member->startDate = $request->input('startdate');

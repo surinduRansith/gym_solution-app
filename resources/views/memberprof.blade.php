@@ -166,7 +166,7 @@
                     <div class="col-sm-9 text-secondary">
 
       @if ($formattedUpdateDate)
-    <p>Last Update Date: {{ $formattedUpdateDate }}</p>
+    <p class="text-warning">Last Update Date: {{ $formattedUpdateDate }}</p>
  
 
     @if ($dateDifference<30)
@@ -174,14 +174,14 @@
         $activetype = 'disabled'
        
       @endphp
-       <p>Weight can only be updated after 30 days from the last update.</p>
+       <p class="text-danger">Weight can only be updated after 30 days from the last update.</p>
       @else
       @php
       $activetype = ''
     @endphp
     @endif
 @else
-    <p>No weight records found for this member.</p>
+    <p class="text-danger" >No weight records found for this member.</p>
 @endif
 <form action="{{route('weight.update',$member->id)}}" method="POST">
   @csrf
@@ -216,16 +216,7 @@
   
 @endforeach
 
-@if ($formattedUpdateDate)
-    <p>Last Update Date: {{ $formattedUpdateDate }}</p>
-    <p>Difference in Days: {{ $dateDifference }}</p>
 
-    @if ($dateDifference<30)
-      
-    @endif
-@else
-    <p>No weight records found for this member.</p>
-@endif
 
 
                               <div>
@@ -360,8 +351,18 @@
               </div>
                   </div>
                   <hr>
+                 
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Expire Date</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{$member->membershiptype}}
+                    </div>
+                  </div>
                 </form>
                   @endforeach
+                  <hr>
                   <div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info " href="{{route('members.edit',$member->id)}}">Edit</a>

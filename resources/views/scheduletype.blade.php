@@ -56,7 +56,7 @@ $exerciseTypes = ['Chest Exercises',
         <div class="input-group mb-3 " >
           <span class="input-group-text" id="basic-addon1">Exercise Type</span>
           <select class="form-select" aria-label="Default" name="exercisetype" >
-              <option selected>Please select Gender</option>
+              <option selected>Please select Exercise Type</option>
               @foreach ($exerciseTypes as $exercisetype )
               <option value="{{$exercisetype}}" {{old('exercisetype')==$exercisetype?'selected':''}}>{{$exercisetype}}</option>
               @endforeach
@@ -78,13 +78,29 @@ $exerciseTypes = ['Chest Exercises',
   </div>
   </form>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   <table class="table  table-striped table-responsive-sm  " id="myTable">
     <thead>
       <th>Exercise Type</th>
       <th>Exercise Name</th>
     </thead>
     <tbody>
-  @foreach ($scheduleTypes as $scheduleType )
+      @foreach ($scheduleTypes as $scheduleType )
 <tr>
   <td>{{$scheduleType->exercise_type}}</td>
   <td>{{$scheduleType->name}}</td>

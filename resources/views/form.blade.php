@@ -77,8 +77,8 @@
           <span class="input-group-text" id="basic-addon1">Membership Type</span>
           <select class="form-select" aria-label="Default" name="membershiptype" >
               <option selected>Please select Gender</option>
-              <option value="monthly" {{old('membershiptype')=='monthly'?'selected':''}}>Monthly</option>
-              <option value="annual" {{old('membershiptype')=='annual'?'selected':''}}>Annual</option>
+              <option value="Monthly" {{old('membershiptype')=='Monthly'?'selected':''}}>Monthly</option>
+              <option value="Annual" {{old('membershiptype')=='Annual'?'selected':''}}>Annual</option>
             </select>
       </div>
       @error('membershiptype')
