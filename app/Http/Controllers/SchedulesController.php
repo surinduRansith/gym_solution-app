@@ -41,6 +41,8 @@ class SchedulesController extends Controller
         if (!$members) {
             return redirect()->back()->with('error', 'Member not found.');
         }
+
+        $exercise = exercise_types::all('name');
    
         $this->validate($request, [
             'exerciselist' => 'required',

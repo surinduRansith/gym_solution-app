@@ -322,19 +322,20 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                       <form action="{{route('updateshedule.insert',$member->id)}}" method="post">
                         @csrf
                       <h6 class="mb-0">Shedule</h6>
                     </div>
-                    <div class="col-sm-3 text-secondary">
-                        <select class="form-select" aria-label="Default" name="exerciselist" >
+                    <div class="col-sm-4 text-secondary">
+                        <select class="form-select select2  " aria-label="Default" name="exerciselist" >
                             <option selected>Select Exercise</option>
                             @foreach ($scheduleTypes as $exercise )
                             <option value="{{$exercise->id}}" >{{$exercise->name}}</option>
                             @endforeach
                           </select>
                     
+                          
                     </div>
                     <div class="col-sm-2 text-secondary">
                       <input type="number" class="form-control" id="numberofsets"  name="numberofsets">
@@ -366,77 +367,28 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info " href="{{route('members.edit',$member->id)}}">Edit</a>
+                      <a class="btn btn-success " href="{{route('paymentpage.data',$member->id)}}">Add Payment</a>
+                      <a class="btn btn-warning " href="{{route('members.edit',$member->id)}}">Attendance</a>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {{-- <div class="row gutters-sm">
-                <div class="col-sm-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2"></i>Weight Status</h6>
-                      <small>Weight Control</small>
-                      <div class="progress mb-3" style="height: 5px">
-@extends('Charts.linechart')
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                       --}}
-                      {{-- <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div> --}}
-                    {{-- </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
-
-
-
             </div>
           </div>
+          
 
-  
+          <script>
 
+            var select_box_element = document.querySelector('#exerciselist');
+        
+            dselect(select_box_element, {
+                search: true
+            });
+        
+        </script>
+<script>
+  $('.select2').select2();
+</script>
 
     
 

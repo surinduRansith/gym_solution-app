@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\memberScheduleListController;
 use App\Http\Controllers\membersController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\Schedule_typesController;
 use App\Http\Controllers\SchedulesController;
@@ -57,3 +58,5 @@ Route::delete('/members/{id}/editschedule/{scheduleid}', [SchedulesController::c
 Route::delete('/members/{id}/schedule/{scheduleid}', [SchedulesController::class, 'memberscheduleDelete'])->name('memberscheduledelete.delete');
 Route::get('/members/{id}/schedule', [SchedulesController::class, 'memberAllscheduleDelete'])->name('memberallscheduledelete.delete');
 Route::get('/members/{id}/generatepdf', [memberScheduleListController::class,'memberScheduleList'])->name('memberschedulelist.data');
+
+Route::get('/members/{id}/payment', [PaymentsController::class,'ShowPaymentPage'])->name('paymentpage.data');

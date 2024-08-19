@@ -50,7 +50,7 @@
     <div class="col-6">
         <div class="input-group mb-3 " >
           <span class="input-group-text" id="basic-addon1">Gender</span>
-          <select class="form-select" aria-label="Default" name="gender" >
+          <select class="form-select form-select-sm" aria-label="Default" name="gender" >
               <option selected>Please select Gender</option>
               <option value="male" {{$member->gender=='male'?'selected':''}}>Male</option>
               <option value="female" {{$member->gender=='female'?'selected':''}}>Female</option>
@@ -77,7 +77,7 @@
       <div class="col-6">
         <div class="input-group mb-3 " >
           <span class="input-group-text" id="basic-addon1">Membership Type</span>
-          <select class="form-select" aria-label="Default" name="membershiptype" >
+          <select class="form-select form-select-sm" aria-label="Default" name="membershiptype" >
               <option selected>Please select Gender</option>
               <option value="Monthly" {{old('membershiptype')=='Monthly'?'selected':''}}>Monthly</option>
               <option value="Annual" {{old('membershiptype')=='Annual'?'selected':''}}>Annual</option>

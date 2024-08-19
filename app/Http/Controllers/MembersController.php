@@ -186,8 +186,8 @@ class MembersController extends Controller
     public function memberscheduleEditpage(Request $request, $id,$sheduleid){
 
         $schedules = Schedules::join('members', 'schedules.member_id', '=', 'members.id')
-        ->join('schedule_types', 'schedules.scheduleType_id', '=', 'schedule_types.id')
-        ->select('schedules.*', 'schedules.id','schedules.member_id','schedule_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.id', $sheduleid)
+        ->join('exercise_types', 'schedules.scheduleType_id', '=', 'exercise_types.id')
+        ->select('schedules.*', 'schedules.id','schedules.member_id','exercise_types.name as exercise_name','schedules.noofsets','schedules.nooftime' )->where('schedules.id', $sheduleid)
         ->get();
        
 
