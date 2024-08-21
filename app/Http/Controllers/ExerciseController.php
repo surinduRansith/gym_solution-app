@@ -45,7 +45,7 @@ class ExerciseController extends Controller
             ]
         );
 
-        return redirect()->route("scheduletype.insert")->with("success","Schedule Add Successfully");
+        return redirect()->route("paymentpage.data")->with("success","Schedule Add Successfully");
 
     }
 

@@ -368,7 +368,7 @@
                     <div class="col-sm-12">
                       <a class="btn btn-info " href="{{route('members.edit',$member->id)}}">Edit</a>
                       <a class="btn btn-success " href="{{route('paymentpage.data',$member->id)}}">Add Payment</a>
-                      <a class="btn btn-warning " href="{{route('members.edit',$member->id)}}">Attendance</a>
+                      <a class="btn btn-warning " href="{{route('attendance.edit',$member->id)}}">Attendance</a>
                     </div>
                   </div>
                 </div>

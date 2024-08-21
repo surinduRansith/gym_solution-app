@@ -60,3 +60,8 @@ Route::get('/members/{id}/schedule', [SchedulesController::class, 'memberAllsche
 Route::get('/members/{id}/generatepdf', [memberScheduleListController::class,'memberScheduleList'])->name('memberschedulelist.data');
 
 Route::get('/members/{id}/payment', [PaymentsController::class,'ShowPaymentPage'])->name('paymentpage.data');
+Route::post('/members/{id}/payment', [PaymentsController::class,'addPayment'])->name('paymentpage.insert');
+Route::get('/members/{id}/payment/{month}', [PaymentsController::class,'deletePaymentPage'])->name('paymentpage.delete');
+Route::delete('/members/{id}/payment/{payment}', [PaymentsController::class,'deletePaymentPageAnnual'])->name('paymentpageAnnual.delete');
+Route::get('/members/{id}/attendance}', [PaymentsController::class,'deletePaymentPage'])->name('attendance.edit');
+

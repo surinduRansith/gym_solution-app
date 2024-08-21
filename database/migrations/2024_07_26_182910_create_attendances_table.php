@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('member_id');
+            $table->string('month');
+            $table->integer('attendance');
             $table->timestamps();
+
+
+
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
         });
     }
 

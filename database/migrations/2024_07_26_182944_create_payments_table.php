@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('member_id');
             $table->string('membership_type');
+            $table->string('month')->nullable;
             $table->float('amount');
             $table->timestamps();
 

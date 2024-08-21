@@ -9,5 +9,10 @@ class Payments extends Model
 {
     use HasFactory;
 
-    
+    protected $fillable = [
+        'member_id',         
+        'membership_type',  
+        'month',             
+        'amount',            
+    ];
 }
