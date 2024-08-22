@@ -5,10 +5,13 @@ use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\memberScheduleListController;
 use App\Http\Controllers\membersController;
 use App\Http\Controllers\PaymentsController;
-use App\Http\Controllers\WeightController;
-use App\Http\Controllers\Schedule_typesController;
+use Illuminate\Http\Request;
 use App\Http\Controllers\SchedulesController;
+use App\Models\Attendance;
+use App\Models\Members;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +36,7 @@ Route::get('/form', function () {
     return view('form',);
 })->name('membersregistration.data');
 
-Route::get('/attendancereport', function () {
-    return view('attendancereport',);
-})->name('attendancereport.show');
+
 Route::get('/paymentreport', function () {
     return view('paymentreport',);
 })->name('paymentreport.show');
@@ -77,7 +78,44 @@ Route::delete('/members/{id}/payment/{payment}', [PaymentsController::class,'del
 Route::get('/members/{id}/attendance', [AttendanceController::class,'show'])->name('attendance.show');
 Route::post('/members/{id}/attendance', [AttendanceController::class,'markAttendance'])->name('attendance.insert');
 
+Route::get('/attendancereport', function (Request $request) {
 
+    $members = Members::all();
+
+    
+    $userAttendance = Attendance::all()->where('member_id',$request->input('memberid'));
+
+    return view('attendancereport',compact('members','userAttendance'));
+})->name('attendancereport.show');
+
+Route::post('/attendancereport', function (Request $request) {
+
+    $members = Members::all();
+
+    $request->validate([
+        'startdate' => 'required|date',
+        'enddate' => 'required|date|after_or_equal:startdate',
+        'memberid' => [
+            'required',
+            Rule::in($members->pluck('id')->toArray())
+        ],
+    ]);
+
+    $memberId = $request->input('memberid');
+    $startDate = $request->input('startdate');
+    $endDate = $request->input('enddate');
+
+    $userAttendance = Attendance::join('members', 'attendances.member_id', '=', 'members.id')
+        ->select('attendances.*', 'members.name as name')
+        ->where('attendances.member_id', $memberId)
+        ->whereBetween('attendances.attendancedate', [$startDate, $endDate]) // Use the correct date column name
+        ->orderBy('attendances.attendancedate', 'asc')
+        ->get();
+
+    return view('attendancereport', compact('members', 'userAttendance'));
+})->name('attendancereport1.show');
+
+//Route::post('/attendancereport', [AttendanceController::class,'getMembersAttendance'])->name('attendanceUser.show');
 
 
 

@@ -124,5 +124,7 @@ class AttendanceController extends Controller
 
         return redirect()->route('attendance.show',$id)->with('success', 'User Attendance Update Success');
     }
+
+
 }
 

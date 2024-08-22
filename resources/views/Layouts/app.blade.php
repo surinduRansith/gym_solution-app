@@ -45,7 +45,9 @@ rel="stylesheet"
     <link rel="stylesheet" href="{{url('CSS/sidebar.css')}}">
     <style>td:hover{
 		cursor:move;
-		}</style>
+		}
+        
+        </style>
   </head>
   <body>
     

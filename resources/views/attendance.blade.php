@@ -21,11 +21,6 @@ use Illuminate\Support\Carbon;
         border: 1px solid #dee2e6; /* Adjust color as needed */
     }
 
-    .disabled {
-    pointer-events: none; /* Prevents clicking */
-    opacity: 0.5; /* Makes it look disabled */
-    cursor: not-allowed; /* Changes cursor to indicate disabled state */
-}
 </style>
 
  <!-- Breadcrumb -->
@@ -74,8 +69,8 @@ use Illuminate\Support\Carbon;
 
 
     <div class="container text-center">
-        <h2><button type="submit" name="monthcount" value="min"><i class="fa-solid fa-angle-right fa-rotate-180"></i></button>
-            {{ $month['name'] }} {{ $year }} <button type="submit" name="monthcount" value="add"><i class="fa-solid fa-angle-right"></i></button></h2>
+        <h2><button type="submit" name="monthcount" value="min" class="btn btn-outline-info"><i class="fa-solid fa-angle-right fa-rotate-180"></i></button>
+            {{ $month['name'] }} {{ $year }} <button type="submit" name="monthcount" value="add" class="btn btn-outline-info"><i class="fa-solid fa-angle-right"></i></button></h2>
         <br>
     </form>
         <table class="table table-striped ">

@@ -121,6 +121,7 @@
 </div> 
 </div>
     <br>
+    <a href="{{route('members.data')}}" class="btn btn-danger " >Cancel</a>
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
   </form>

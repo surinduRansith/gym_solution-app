@@ -24,7 +24,13 @@
 </tr>
 @endforeach
 <tr>
- <td colspan="3" class="align-middle"> <div class="text-center"><button class="btn btn-sm btn-primary " >update</button></div> </td>
+ 
+ <td colspan="3" class="align-middle"> 
+  <div class="text-center">
+ <a href="{{route('members.profile', ['id' => $schedule->member_id])}}" class="btn btn-sm btn-danger " >Cancel</a>
+    <button class="btn btn-sm btn-primary " >update</button>
+</div> 
+</td>
 </form>
 </tr>
 </tbody>

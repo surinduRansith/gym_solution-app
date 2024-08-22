@@ -59,18 +59,78 @@
                             <td>{{$schedule->noofsets}} </td>
                             <td>X {{$schedule->nooftime}}</td>
                            <td> <a href="{{route('memberscheduleedit.show',['id' => $member->id, 'scheduleid' => $schedule->id])}}" class="btn btn-sm btn-primary " ><i class="lni lni-pencil-alt"></i></button> </td>
-                           <form action="{{route('memberscheduledelete.delete',['id' => $member->id, 'scheduleid' => $schedule->id])}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <td> <button class="btn btn-sm btn-danger " type="submit"  ><i class="lni lni-eraser"></i></i></button> </td>
+                          
+                           
+                            <td> 
+                              
+                               <!-- Button trigger modal -->
+<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$schedule->id}}">
+  <i class="lni lni-trash-can"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{$schedule->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Want to Delete This Exercise  - {{$schedule->id}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <form action="{{route('memberscheduledelete.delete',['id' => $member->id, 'scheduleid' => $schedule->id])}}" method="POST">
+          
+          @csrf
+          @method('Delete')
+        <button type="submit" class="btn btn-danger">Yes</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+                              
+                              
+                              
+                              
+                              
+                              
+                              </td>
                           </tr>
-                        </form>
+                        
                           @endforeach
                           
                           <tr>
                            <td colspan="6">
                             <a href="{{route('memberschedulelist.data',['id' => $member->id])}}" class="btn btn-sm btn-primary " ><i class="lni lni-download"></i></a>
-                            <a href="{{route('memberallscheduledelete.delete',['id' => $member->id])}}" class="btn btn-sm btn-danger "><i class="lni lni-eraser"></i></i></a>
+
+                                 <!-- Button trigger modal -->
+<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#scheduleall">
+  <i class="lni lni-trash-can"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="scheduleall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Want to Delete This Schedule</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">No</button>
+        <a href="{{route('memberallscheduledelete.delete',['id' => $member->id])}}" class="btn btn-sm btn-danger "><i class="lni lni-eraser"></i></i></a>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+                            
                              </td>
                           </tr>
                           </tbody>
