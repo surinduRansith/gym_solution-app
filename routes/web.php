@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\memberScheduleListController;
 use App\Http\Controllers\membersController;
@@ -32,11 +33,21 @@ Route::get('/form', function () {
     return view('form',);
 })->name('membersregistration.data');
 
+Route::get('/attendancereport', function () {
+    return view('attendancereport',);
+})->name('attendancereport.show');
+Route::get('/paymentreport', function () {
+    return view('paymentreport',);
+})->name('paymentreport.show');
+
 Route::post('/form', [MembersController::class, 'createMember'])->name('insert.data');
+
 
 Route::get('/members', [MembersController::class,'ShowMembers'])->name('members.data');
 
+
 Route::get('/members/{id}', [MembersController::class,'ShowMemberDetails'])->name('members.profile');
+Route::delete('/members/{id}', [MembersController::class,'deleteMemberDetails'])->name('membersdelete.delete');
 
 Route::put('/members/{id}', [MembersController::class,'weightUpdate'])->name('weight.update');
 
@@ -63,5 +74,10 @@ Route::get('/members/{id}/payment', [PaymentsController::class,'ShowPaymentPage'
 Route::post('/members/{id}/payment', [PaymentsController::class,'addPayment'])->name('paymentpage.insert');
 Route::get('/members/{id}/payment/{month}', [PaymentsController::class,'deletePaymentPage'])->name('paymentpage.delete');
 Route::delete('/members/{id}/payment/{payment}', [PaymentsController::class,'deletePaymentPageAnnual'])->name('paymentpageAnnual.delete');
-Route::get('/members/{id}/attendance}', [PaymentsController::class,'deletePaymentPage'])->name('attendance.edit');
+Route::get('/members/{id}/attendance', [AttendanceController::class,'show'])->name('attendance.show');
+Route::post('/members/{id}/attendance', [AttendanceController::class,'markAttendance'])->name('attendance.insert');
+
+
+
+
 

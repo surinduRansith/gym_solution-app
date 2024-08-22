@@ -74,9 +74,15 @@ rel="stylesheet"
                   </a>
               </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{route('paymentreport.show')}}" class="sidebar-link">
                       <i class="lni lni-invest-monitor"></i>
                         <span>Payments</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{route('attendancereport.show')}}" class="sidebar-link">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>Attendance</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

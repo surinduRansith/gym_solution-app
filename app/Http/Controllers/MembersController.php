@@ -194,5 +194,13 @@ class MembersController extends Controller
         return view('memberscheduleedit',compact('schedules'));
     }
 
+    public function deleteMemberDetails($id){
+
+        DB::table('members')
+        ->where('id',$id)
+        ->delete();
+
+        return redirect()->route('members.data')->with('success', 'User Delete Success');
+    }
     
 }

@@ -355,7 +355,7 @@
                  
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Expire Date</h6>
+                      <h6 class="mb-0">Membership</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                         {{$member->membershiptype}}
@@ -368,7 +368,7 @@
                     <div class="col-sm-12">
                       <a class="btn btn-info " href="{{route('members.edit',$member->id)}}">Edit</a>
                       <a class="btn btn-success " href="{{route('paymentpage.data',$member->id)}}">Add Payment</a>
-                      <a class="btn btn-warning " href="{{route('attendance.edit',$member->id)}}">Attendance</a>
+                      <a class="btn btn-warning " href="{{route('attendance.show',$member->id)}}">Attendance</a>
                     </div>
                   </div>
                 </div>
