@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\SchedulesController;
 use App\Models\Attendance;
 use App\Models\Members;
+use App\Models\Payments;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -37,9 +39,7 @@ Route::get('/form', function () {
 })->name('membersregistration.data');
 
 
-Route::get('/paymentreport', function () {
-    return view('paymentreport',);
-})->name('paymentreport.show');
+
 
 Route::post('/form', [MembersController::class, 'createMember'])->name('insert.data');
 
@@ -88,6 +88,8 @@ Route::get('/attendancereport', function (Request $request) {
     return view('attendancereport',compact('members','userAttendance'));
 })->name('attendancereport.show');
 
+
+
 Route::post('/attendancereport', function (Request $request) {
 
     $members = Members::all();
@@ -112,10 +114,63 @@ Route::post('/attendancereport', function (Request $request) {
         ->orderBy('attendances.attendancedate', 'asc')
         ->get();
 
+        
+
     return view('attendancereport', compact('members', 'userAttendance'));
 })->name('attendancereport1.show');
 
-//Route::post('/attendancereport', [AttendanceController::class,'getMembersAttendance'])->name('attendanceUser.show');
 
+Route::get('/paymentreport', function (Request $request) {
+
+    $members = Members::all();
+    $payments =Payments::all()->where('member_id',$request->input('memberid'));
+    $testvalue =1;
+    return view('paymentreport',compact('members','payments','testvalue'));
+})->name('paymentreport.show');
+
+
+Route::post('/paymentreport', function (Request $request) {
+
+    $members = Members::all();
+
+    $request->validate([
+        'memberid' => [
+            'required',
+            Rule::in($members->pluck('id')->toArray())
+        ],
+    ]);
+
+    $memberId = $request->input('memberid');
+    $testvalue = $request->input('testvalue');
+    $payments =Payments::join('members', 'payments.member_id', '=', 'members.id')
+        ->select('payments.*', 'members.name as name')
+        ->where('payments.member_id', $memberId)
+        ->get();
+
+
+        
+
+    return view('paymentreport',compact('members','payments','testvalue'));
+})->name('userpaymentreport.show');
+
+Route::get('/paymentreport/{id}/generatepdf', function (Request $request,$id) {
+
+  
+    $memberId = $id;
+
+    $payments =Payments::join('members', 'payments.member_id', '=', 'members.id')
+        ->select('payments.*', 'members.name as name')
+        ->where('payments.member_id', $memberId)
+        ->get();
+
+        $data=[
+           
+            'payments'=> $payments
+
+        ];
+
+        $pdf = Pdf::loadView('Pdf.memberpaymentreportpdf',$data);
+        return $pdf->stream('invoice.pdf');
+})->name('userpaymentreportpdf.show');
 
 

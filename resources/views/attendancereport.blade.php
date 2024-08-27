@@ -47,8 +47,26 @@
 @if(count($userAttendance)>0)
 
 <div class="row">
-
-
+    <div class="col-10">
+        
+    </div>
+<div class="col-2">
+    <button type="button" class="btn btn-sm btn-danger"  title="Download PDF">
+       <i class="fa-solid fa-file-pdf"></i>
+      </button>
+      <button type="button" class="btn btn-sm btn-danger">
+       <i class="fa-solid fa-file-pdf"></i>
+      </button>
+      <button type="button" class="btn btn-sm btn-danger">
+       <i class="fa-solid fa-file-pdf"></i>
+      </button>
+      <button type="button" class="btn btn-sm btn-danger">
+       <i class="fa-solid fa-file-pdf"></i>
+      </button>
+</div>
+</div>
+<br>
+<div class="row">
     <div class="table-responsive">
         <table class="table " id="myTable" >
             <thead class="table-secondary">
