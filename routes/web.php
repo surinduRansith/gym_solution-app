@@ -174,3 +174,17 @@ Route::get('/paymentreport/{id}/generatepdf', function (Request $request,$id) {
 })->name('userpaymentreportpdf.show');
 
 
+Route::get('/auth/login',function(){
+
+return view('logins');
+
+})->name('loginshow.page');
+
+
+Route::get('/auth/registration',function(){
+
+    return view('registrationpage');
+    
+    })->name('registration.page');
+
+

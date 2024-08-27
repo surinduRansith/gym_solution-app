@@ -95,10 +95,10 @@ rel="stylesheet"
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
+                        <a href="{{route('loginshow.page')}}" class="sidebar-link">Login</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Register</a>
+                            <a href="{{route('registration.page')}}" class="sidebar-link">Register</a>
                         </li>
                     </ul>
                 </li>

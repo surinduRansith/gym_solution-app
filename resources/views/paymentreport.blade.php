@@ -9,7 +9,7 @@
     <form action="{{route('userpaymentreport.show')}}" method="POST">
         @csrf
     <div class="row">
-        <div class="col-4 ">
+        <div class="col-2">
             
                 <select class="form-select select2  " aria-label="Default" name="memberid" >
                     <option selected>Search Member</option>
@@ -24,8 +24,11 @@
         </div>
        
     <input name="testvalue" type="number" value="0" hidden>
-      <div class="col-2">
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="col-1">
+    </div>
+      <div class="col-3">
+        <button type="submit" class="btn btn-primary">Search</button>
     </div> 
       </div>
     
@@ -51,10 +54,26 @@
         @foreach ($payments as $payment )
         @endforeach
         
-            <a href="{{route('userpaymentreportpdf.show',$payment->member_id)}}" class="btn btn-sm btn-danger"  title="Download PDF">
+
+        @if($payment->membership_type=='Monthly')
+            <a href="{{route('userpaymentreportpdf.show',
+            ['id'=>$payment->member_id,
+            'name'=>$payment->name,
+            'membership'=>$payment->membership_type,
+            'month'=>$payment->month,
+            'amount'=>$payment->amount])}}" class="btn btn-sm btn-danger"  title="Download PDF">
                <i class="fa-solid fa-file-pdf"></i>
             </a>
-     
+     @else
+     <a href="{{route('userpaymentreportpdf.show',
+     ['id'=>$payment->member_id,
+     'name'=>$payment->name,
+     'membership'=>$payment->membership_type,
+     'amount'=>$payment->amount])}}" class="btn btn-sm btn-danger"  title="Download PDF">
+        <i class="fa-solid fa-file-pdf"></i>
+     </a>
+
+     @endif
 
     </div>
     </div>

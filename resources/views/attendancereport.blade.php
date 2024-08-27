@@ -5,7 +5,7 @@
 <form action="{{route('attendancereport1.show')}}" method="POST">
     @csrf
 <div class="row">
-    <div class="col-4 ">
+    <div class="col-3">
         
             <select class="form-select select2  " aria-label="Default" name="memberid" >
                 <option selected>Search Member</option>
@@ -17,6 +17,8 @@
               @error('memberid')
               <p style="color: red">{{ $message }}</p>
           @enderror
+    </div>
+    <div class="col-1">
     </div>
     <div class="col-3">
        <div class="input-group mb-3 " >
@@ -38,7 +40,7 @@
   </div> 
 
   <div class="col-2">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Search</button>
 </div> 
   </div>
 
