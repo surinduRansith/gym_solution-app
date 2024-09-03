@@ -1,6 +1,15 @@
+@php
+    use Illuminate\Support\Carbon;
+
+$startDate = Carbon::now()->startOfMonth()->format('Y-m-d'); // First day of the month
+$endDate = Carbon::now()->endOfMonth()->format('Y-m-d');
+@endphp
 @extends('Layouts.app')
 @section('content')
-    
+<div class="text-center pt-2">
+    <h1>Attendance Report</h1>
+</div>
+<br>
 <div class="row ">
 <form action="{{route('attendancereport1.show')}}" method="POST">
     @csrf
@@ -23,7 +32,7 @@
     <div class="col-3">
        <div class="input-group mb-3 " >
         <span class="input-group-text" id="basic-addon1">Start Date</span>
-        <input type="date" class="form-control" id="startdate" name="startdate" value="{{old('startdate')}}">
+        <input type="date" class="form-control" id="startdate" name="startdate" value="{{$startDate}}">
       </div>
       @error('startdate')
       <p style="color: red">{{ $message }}</p>
@@ -31,8 +40,8 @@
     </div>
     <div class="col-3">
       <div class="input-group mb-3 " >
-       <span class="input-group-text" id="basic-addon1">Expire Date</span>
-       <input type="date" class="form-control" id="enddate" name="enddate" value="{{old('enddate')}}">
+       <span class="input-group-text" id="basic-addon1">End Date</span>
+       <input type="date" class="form-control" id="enddate" name="enddate" value="{{$endDate}}">
       </div>
       @error('enddate')
       <p style="color: red">{{ $message }}</p>

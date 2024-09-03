@@ -123,7 +123,17 @@ Route::post('/attendancereport', function (Request $request) {
 Route::get('/paymentreport', function (Request $request) {
 
     $members = Members::all();
-    $payments =Payments::all()->where('member_id',$request->input('memberid'));
+    $allusers = $request->input('allusers');
+    if($allusers == 1){
+
+        $payments =Payments::all();
+
+    }else{
+
+        
+
+        $payments =Payments::all()->where('member_id',$request->input('memberid'));
+    }
     $testvalue =1;
     return view('paymentreport',compact('members','payments','testvalue'));
 })->name('paymentreport.show');
@@ -133,24 +143,46 @@ Route::post('/paymentreport', function (Request $request) {
 
     $members = Members::all();
 
-    $request->validate([
+    $validatedData = $request->validate([
         'memberid' => [
-            'required',
-            Rule::in($members->pluck('id')->toArray())
+            'nullable', // memberid is optional
+            Rule::in($members->pluck('id')->toArray()) // Validates only if provided
         ],
+        'allusers' => 'nullable|boolean', // allusers is optional but should be a boolean if provided
+        // Ensure at least one of the fields is present
+        'memberid' => 'required_without:allusers',
+        'allusers' => 'required_without:memberid',
+
+        'startdate' => 'required|date',
+        'enddate' => 'required|date|after_or_equal:startdate',
     ]);
 
+    // Retrieve input values
     $memberId = $request->input('memberid');
     $testvalue = $request->input('testvalue');
-    $payments =Payments::join('members', 'payments.member_id', '=', 'members.id')
-        ->select('payments.*', 'members.name as name')
-        ->where('payments.member_id', $memberId)
-        ->get();
+    $allusers = $request->input('allusers');
+    $startDate1 = $request->input('startdate');
+    $endDate1 = $request->input('enddate');
 
+    // Build the query based on input
+    if ($allusers) {
+        // Fetch all payments if allusers is selected
+        $payments = Payments::join('members', 'payments.member_id', '=', 'members.id')
+            ->select('payments.*', 'members.name as name')
+            ->whereBetween('payments.created_at', [$startDate1, $endDate1]) // Use the correct date column name
+        ->orderBy('payments.member_id', 'asc')
+            ->get();
+    } else {
+        // Fetch payments for a specific member
+        $payments = Payments::join('members', 'payments.member_id', '=', 'members.id')
+            ->select('payments.*', 'members.name as name')
+            ->where('payments.member_id', $memberId)
+            ->get();
+    }
 
-        
+      
 
-    return view('paymentreport',compact('members','payments','testvalue'));
+    return view('paymentreport',compact('members','payments','testvalue','allusers','startDate1','endDate1'));
 })->name('userpaymentreport.show');
 
 Route::get('/paymentreport/{id}/generatepdf', function (Request $request,$id) {
@@ -172,6 +204,30 @@ Route::get('/paymentreport/{id}/generatepdf', function (Request $request,$id) {
         $pdf = Pdf::loadView('Pdf.memberpaymentreportpdf',$data);
         return $pdf->stream('invoice.pdf');
 })->name('userpaymentreportpdf.show');
+
+Route::get('/paymentreport/generatepdf/all', function (Request $request) {
+
+    $startDate = $request->input('startdate');
+    $endDate = $request->input('enddate');
+
+
+    $payments = Payments::join('members', 'payments.member_id', '=', 'members.id')
+    ->select('payments.*', 'members.name as name')
+   ->whereBetween('payments.created_at', [$startDate, $endDate]) // Use the correct date column name
+->orderBy('payments.member_id', 'asc')
+    ->get();
+
+        $data=[
+           
+            'payments1'=> $payments
+
+        ];
+
+        $pdf = Pdf::loadView('Pdf.alluserspaymentreport',$data);
+        return $pdf->stream('payment.pdf');
+        
+})->name('alluserpaymentreportpdf.show');
+
 
 
 Route::get('/auth/login',function(){

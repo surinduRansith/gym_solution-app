@@ -22,7 +22,7 @@ $exerciseTypes = ['Chest Exercises',
 
 @section('content')
 
-<div class="text-center pt-5">
+<div class="text-center pt-2">
     <h1>Schedule Type</h1>
 </div>
 <br>
